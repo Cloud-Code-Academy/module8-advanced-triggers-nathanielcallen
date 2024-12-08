@@ -463,7 +463,7 @@ public with sharing class TriggerBestPracticeTest {
         System.assertEquals(0, contacts.size(), 'Primary Contact should not exist.');
         List<Contact> moreContact = [SELECT Id, Name FROM Contact];
         for (Opportunity opp : opps) {
-            System.assertEquals(notPrimaryContact.Id, opp.Primary_Contact__c, 'Opportunity Primary Contact is incorrect: ' + opp.Primary_Contact__c);
+        System.assertEquals(notPrimaryContact.Id, opp.Primary_Contact__c, 'Opportunity Primary Contact is incorrect: ' + opp.Primary_Contact__c);
         }
         Test.stopTest();
     }

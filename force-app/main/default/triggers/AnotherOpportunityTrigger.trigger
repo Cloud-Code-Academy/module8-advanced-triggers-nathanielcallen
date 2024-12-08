@@ -19,28 +19,5 @@ https://www.salesforceben.com/12-salesforce-apex-best-practices/
 https://developer.salesforce.com/blogs/developer-relations/2015/01/apex-best-practices-15-apex-commandments
 */
 trigger AnotherOpportunityTrigger on Opportunity (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
-    if (Trigger.isBefore){
-        if (Trigger.isInsert){
-            // Set default Type for new Opportunities
-            OpportunityTriggerHandler.setNewCustomerType(Trigger.new);
-        } else if (Trigger.isUpdate){
-            // Append Stage changes in Opportunity Description
-            OpportunityTriggerHandler.stageChangesInDesctiption(Trigger.newMap, Trigger.oldMap);
-        }
-    }
-
-    if (Trigger.isAfter){
-        if (Trigger.isInsert){
-            // Create a new Task for newly inserted Opportunities
-            OpportunityTriggerHandler.createTaskForNewOpps(Trigger.new);
-        }
-        // Send email notifications when an Opportunity is deleted 
-        else if (Trigger.isDelete){
-            OpportunityTriggerHandler.notifyOwnersOpportunityDeleted(Trigger.old);
-        } 
-        // Assign the primary contact to undeleted Opportunities
-        else if (Trigger.isUndelete){
-            OpportunityTriggerHandler.assignPrimaryContact(Trigger.newMap);
-        }
-    }
+   
 }

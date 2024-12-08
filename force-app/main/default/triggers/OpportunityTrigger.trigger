@@ -15,34 +15,7 @@ For this lesson, students have two options:
 
 Remember, whichever option you choose, ensure that the trigger is activated and tested to validate its functionality.
 */
-trigger OpportunityTrigger on Opportunity (before update, after update, before delete) {
-
-    /*
-    * Opportunity Trigger
-    * When an opportunity is updated validate that the amount is greater than 5000.
-    * Trigger should only fire on update.
-    */
-    if (Trigger.isUpdate && Trigger.isBefore){
-        OpportunityTriggerHandler.oppMinAmount(trigger.new);
-    }
-
-    /*
-    * Opportunity Trigger
-    * When an opportunity is deleted prevent the deletion of a closed won opportunity if the account industry is 'Banking'.
-    * Trigger should only fire on delete.
-    */
-    if (Trigger.isDelete){
-        //Account related to the opportunities 
-        OpportunityTriggerHandler.preventDelete(Trigger.old);
-    }
-
-    /*
-    * Opportunity Trigger
-    * When an opportunity is updated set the primary contact on the opportunity to the contact with the title of 'CEO'.
-    * Trigger should only fire on update.
-    */
-    if (Trigger.isUpdate && Trigger.isBefore){
-        //Get contacts related to the opportunity account
-        OpportunityTriggerHandler.updatePrimaryContact(Trigger.new);
-    }    
+trigger OpportunityTrigger on Opportunity (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
+    
+    new OpportunityTriggerHandler().run();   
 }

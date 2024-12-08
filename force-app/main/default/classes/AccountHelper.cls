@@ -70,6 +70,7 @@ public with sharing class AccountHelper {
     }
 
     public static void defaultContact (List<Account> accs) {
+        System.debug(accs);
         List<Contact> contacts = new List<Contact>();   
         for(Account acc : accs){
             Contact con = new Contact();
@@ -78,6 +79,8 @@ public with sharing class AccountHelper {
             con.AccountId = acc.Id;
             contacts.add(con);
         }
+        system.debug(contacts);
         insert contacts; 
+        System.debug(contacts);
     }
 }
